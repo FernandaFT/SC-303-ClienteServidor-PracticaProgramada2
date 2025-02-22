@@ -5,7 +5,6 @@
 package practicaprogramada2;
 
 import java.text.DecimalFormat;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,8 +22,6 @@ public class Conversor extends javax.swing.JFrame {
     private double JPY = 7.31;
     private double BRL = 0.024;
     
-    String[] moneda = {"Dólares Estadounidenses (USD)", "Euros (EUR)", "Libras Esterlinas (GBP)", "Yenes Japoneses (JPY)", "Reales Brasileños (BRL)"};
-
     /**
      * Creates new form Conversor
      */
