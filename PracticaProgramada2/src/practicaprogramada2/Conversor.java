@@ -54,6 +54,7 @@ public class Conversor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tasa de Conversión");
 
+        jLabel1.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         jLabel1.setText("Importe");
 
         txtImporte.addActionListener(new java.awt.event.ActionListener() {
@@ -62,8 +63,10 @@ public class Conversor extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         jLabel2.setText("Conversor");
 
+        cmbMoneda.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         cmbMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dólares Estadounidenses (USD)", "Reales Brasileños (BRL)", "Yenes Japoneses (JPY)", "Libras Esterlinas (GBP)", "Euros (EUR)" }));
         cmbMoneda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +74,7 @@ public class Conversor extends javax.swing.JFrame {
             }
         });
 
+        btnConvertir.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         btnConvertir.setText("Convertir");
         btnConvertir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +82,7 @@ public class Conversor extends javax.swing.JFrame {
             }
         });
 
+        btnLimpiar.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,14 +90,20 @@ public class Conversor extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         jLabel3.setText("Precio Convertido");
 
+        btnSalir.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
             }
         });
+
+        txtPesos.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
+
+        txtPrecioConvertido.setFont(new java.awt.Font("Kodchasan", 0, 13)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +141,7 @@ public class Conversor extends javax.swing.JFrame {
                         .addComponent(txtPesos, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtPrecioConvertido, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +159,7 @@ public class Conversor extends javax.swing.JFrame {
                             .addComponent(btnConvertir)
                             .addComponent(btnLimpiar)
                             .addComponent(btnSalir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
