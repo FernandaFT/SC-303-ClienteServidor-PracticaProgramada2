@@ -4,11 +4,26 @@
  */
 package practicaprogramada2;
 
+import java.text.DecimalFormat;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author fernandafajardo
  */
 public class Conversor extends javax.swing.JFrame {
+    
+    private String importe;
+
+    
+    private double USD = 0.049;
+    private double EUR = 0.045;
+    private double GBP = 0.038;
+    private double JPY = 7.31;
+    private double BRL = 0.024;
+    
+    String[] moneda = {"Dólares Estadounidenses (USD)", "Euros (EUR)", "Libras Esterlinas (GBP)", "Yenes Japoneses (JPY)", "Reales Brasileños (BRL)"};
 
     /**
      * Creates new form Conversor
@@ -27,53 +42,62 @@ public class Conversor extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txtImporte = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbMoneda = new javax.swing.JComboBox<>();
         btnConvertir = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        txtPesos = new javax.swing.JLabel();
+        txtPrecioConvertido = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tasa de Conversión");
 
         jLabel1.setText("Importe");
 
+        txtImporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtImporteActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Conversor");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dólares Estadounidenses (USD)", "Reales Brasileños (BRL)", "Yenes Japoneses (JPY)", "Libras Esterlinas (GBP)", "Euros (EUR)" }));
+        cmbMoneda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dólares Estadounidenses (USD)", "Reales Brasileños (BRL)", "Yenes Japoneses (JPY)", "Libras Esterlinas (GBP)", "Euros (EUR)" }));
+        cmbMoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbMonedaActionPerformed(evt);
+            }
+        });
 
         btnConvertir.setText("Convertir");
+        btnConvertir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConvertirActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
-        jLabel3.setText("jLabel3");
-
-        jLabel4.setText("jLabel4");
+        jLabel3.setText("Precio Convertido");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jLabel3)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel4)))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 32, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnConvertir)
@@ -83,8 +107,26 @@ public class Conversor extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(cmbMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 32, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jSeparator1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPesos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPrecioConvertido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -95,23 +137,82 @@ public class Conversor extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtImporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbMoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnConvertir)
                     .addComponent(btnLimpiar)
                     .addComponent(btnSalir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(57, 57, 57))
+                    .addComponent(txtPesos)
+                    .addComponent(txtPrecioConvertido))
+                .addGap(49, 49, 49))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtImporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtImporteActionPerformed
+        // TODO add your handling code here:
+             
+        
+    }//GEN-LAST:event_txtImporteActionPerformed
+
+    private void cmbMonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMonedaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbMonedaActionPerformed
+
+    private void btnConvertirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConvertirActionPerformed
+        // TODO add your handling code here:
+        
+        try{
+            double importe = Double.parseDouble(txtImporte.getText());
+            String monedaSelect = cmbMoneda.getSelectedItem().toString();
+            double tasa = 0;
+            
+            switch(monedaSelect){
+                case "Dólares Estadounidenses (USD)":
+                    tasa = USD;
+                    break;
+                case "Euros (EUR)":
+                    tasa = EUR;
+                    break;
+                case "Libras Esterlinas (GBP)":
+                    tasa = GBP;
+                    break;
+                case "Yenes Japoneses (JPY)":
+                    tasa = JPY;
+                    break;
+                case "Reales Brasileños (BRL)":
+                    tasa = BRL;
+                    break;
+            }
+            
+            double resultado = importe * tasa;
+            DecimalFormat df = new DecimalFormat("#.00");
+            txtPesos.setText(txtImporte.getText());
+            txtPrecioConvertido.setText("Resultado: " + df.format(resultado) + " " + monedaSelect);
+            
+        } catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Por favor, ingrese una cantidad válida", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConvertirActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        txtImporte.setText(" ");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,12 +253,13 @@ public class Conversor extends javax.swing.JFrame {
     private javax.swing.JButton btnConvertir;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbMoneda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField txtImporte;
+    private javax.swing.JLabel txtPesos;
+    private javax.swing.JLabel txtPrecioConvertido;
     // End of variables declaration//GEN-END:variables
 }
