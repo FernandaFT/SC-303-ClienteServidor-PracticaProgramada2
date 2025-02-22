@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  */
 public class Conversor extends javax.swing.JFrame {
     
-    private String importe;
+    //private String importe;
 
     
     private double USD = 0.049;
